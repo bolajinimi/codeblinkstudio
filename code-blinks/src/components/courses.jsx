@@ -54,7 +54,6 @@ export default function Courses() {
         (result) => {
           console.log("Admin email sent successfully:", result);
 
-          // Send a thank-you email to the user
           emailjs
             .send(
               "service_tbpzjbh",
@@ -68,11 +67,7 @@ export default function Courses() {
             .then(
               (result) => {
                 console.log("Thank-you email sent successfully:", result);
-
-                // Show success notification
                 toast.success("Application submitted successfully! Proceeding to payment...");
-
-                // Close the application modal and open the payment modal
                 setIsModalOpen(false);
                 setIsPaymentModalOpen(true);
               },
@@ -96,6 +91,7 @@ export default function Courses() {
       price: "#250,000",
       image: frontend,
       startDate: "January 15, 2024",
+      duration: "3 months",
     },
     {
       title: "UI/UX Design",
@@ -103,6 +99,7 @@ export default function Courses() {
       price: "#150,000",
       image: uiux,
       startDate: "February 10, 2024",
+      duration: "3 months",
     },
     {
       title: "Backend Development",
@@ -110,6 +107,7 @@ export default function Courses() {
       price: "#300,000",
       image: backend,
       startDate: "March 5, 2024",
+      duration: "3 months",
     },
     {
       title: "Data Analysis",
@@ -117,8 +115,10 @@ export default function Courses() {
       price: "#200,000",
       image: data,
       startDate: "April 20, 2024",
+      duration: "3 months",
     },
   ];
+  
 
   return (
     <div className="p-6 space-y-8">
@@ -138,6 +138,9 @@ export default function Courses() {
             <p className="text-sm text-gray-500 mb-2">
               Start Date: <span className="font-semibold">{course.startDate}</span>
             </p>
+            <p className="text-sm text-gray-500 mb-2">
+              Duration: <span className="font-semibold">{course.duration}</span>
+            </p>
             <ul className="mb-4 space-y-1">
               {course.tools.map((tool, i) => (
                 <li key={i} className="text-gray-600">
@@ -148,7 +151,7 @@ export default function Courses() {
             <p className="text-lg font-bold text-gray-800 mb-4">{course.price}</p>
             <button
               onClick={() => handleOpenModal(course.title)}
-              className="px-4 py-2 bg-[#8909AF] text-white rounded hover:bg-blue-600 transition duration-300"
+              className="px-4 py-2 bg-[#8909AF] text-white rounded hover:bg-purple-400 transition duration-300"
             >
               Apply Now
             </button>
@@ -156,10 +159,8 @@ export default function Courses() {
         ))}
       </div>
 
-      {/* Toastify Container */}
       <ToastContainer position="top-right" autoClose={3000} />
 
-      {/* Application Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg shadow-lg w-80">
@@ -194,7 +195,7 @@ export default function Courses() {
               />
               <button
                 type="submit"
-                className="w-full px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                className="w-full px-4 py-2 bg-[#8909AF] text-white rounded hover:bg-purple-300"
               >
                 Submit
               </button>
@@ -209,12 +210,17 @@ export default function Courses() {
         </div>
       )}
 
-      {/* Payment Modal */}
       {isPaymentModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg shadow-lg w-80">
-            <MakePayment {...formData} onClose={handlePaymentModalClose} />
+            <MakePayment onClose={handlePaymentModalClose} {...formData} />
           </div>
+          <button
+              onClick={handleCloseModal}
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
+            >
+              &times;
+            </button>
         </div>
       )}
     </div>

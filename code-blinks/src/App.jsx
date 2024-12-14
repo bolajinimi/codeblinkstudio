@@ -2,6 +2,8 @@
 import Navbar from './components/navbar'
 import HomePage from './components/home'
 import Courses from './components/courses'
+import WhyChooseUs from './components/whyChooseUs'
+import Footer from './components/footer'
 
 
 function App() {
@@ -12,6 +14,8 @@ function App() {
       <Navbar />
       <HomePage/>
       <Courses />
+      <WhyChooseUs />
+      <Footer />
       {/* <Router>
       <Routes>
         <Route path="/" element={<Courses />} />

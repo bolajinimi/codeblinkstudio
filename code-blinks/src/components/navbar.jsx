@@ -50,7 +50,7 @@ export default function Navbar() {
           <div className="flex flex-col lg:flex-row lg:items-center gap-4">
             {/* Enroll Now Button */}
             <a
-              href="#"
+               href="/courses"
               className="font-bold px-4 py-2 text-white bg-[#8909AF] rounded-lg shadow hover:bg-[#7909AF]transition"
             >
               Enroll Now
