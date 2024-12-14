@@ -1,7 +1,8 @@
-// import './App.css'
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from './components/navbar'
 import HomePage from './components/home'
 import Courses from './components/courses'
+
 
 function App() {
  
@@ -11,9 +12,13 @@ function App() {
       <Navbar />
       <HomePage/>
       <Courses />
-      {/* <div className="container mx-auto px-4 py-4">
-        <h1 className="text-2xl font-bold text-gray-800">Hello World</h1>
-    </div> */}
+      {/* <Router>
+      <Routes>
+        <Route path="/" element={<Courses />} />
+        <Route path="/make-payment" element={<MakePayment />} />
+      </Routes>
+    </Router> */}
+     
     </>
   )
 }

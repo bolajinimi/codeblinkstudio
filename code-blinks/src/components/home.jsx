@@ -2,32 +2,36 @@
 
 export default function HomePage() {
   return (
-    <div className="relative h-screen">
-      {/* Background Image */}
-      <div className="absolute inset-0 bg-cover bg-center opacity-90 bg-[url('/lady.jpg')]"></div>
+    <div className="relative h-[80vh]">
 
+        {/* Background color overlay */}
+     <div className="absolute inset-0 bg-[#8909AF] opacity-90"></div>
+
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-cover bg-center opacity-90 bg-[url('/home02.jpg')]"></div>
       {/* Content */}
-      <div className="relative flex flex-col items-center justify-center h-full text-center">
-        <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
-          Welcome to Our Platform
-        </h1>
-        <p className="text-lg lg:text-2xl text-white mb-8">
-          Your journey starts here.
-        </p>
-        <a
-          href="#"
-          className="px-6 py-3 text-white bg-[#8909AF] hover:bg-blue-700 rounded-lg shadow-lg text-lg font-semibold"
-        >
-          Register Now
-        </a>
-      </div>
+        <div className="relative flex flex-col items-center justify-center h-full text-center">
+          <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+            Welcome to Africa&apos;s #1 Training Institute
+          </h1>
+          <p className="text-lg lg:text-2xl text-white mb-4">
+            Transforming passionate individuals into world-class developers.
+          </p>
+          <a
+            href="#"
+            className="px-6 py-3 text-white bg-[#8909AF] hover:bg-blue-700 rounded-lg shadow-lg text-lg font-semibold"
+          >
+            Register Now
+          </a>
+        </div>
+
 
       {/* WhatsApp Floating Button */}
       <a
         href="https://wa.me/1234567890?text=08101107427"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-2 hover:bg-green-600 transition"
+        className="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-2 hover:bg-green-600 transition z-50"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

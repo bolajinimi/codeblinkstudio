@@ -1,8 +1,16 @@
-import  { useState } from "react";
+import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import frontend from "../assets/frontend.jpeg";
+import uiux from "../assets/ui-ux.jpg";
+import backend from "../assets/backend.jpeg";
+import data from "../assets/data.jpg";
 import emailjs from "@emailjs/browser";
+import MakePayment from "./makePayment";
 
 export default function Courses() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,106 +28,95 @@ export default function Courses() {
     setFormData({ name: "", email: "", phone: "", course: "" });
   };
 
+  const handlePaymentModalClose = () => {
+    setIsPaymentModalOpen(false);
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    // Send the application details to your email
     emailjs
       .send(
-        "service_tbpzjbh", 
-        "template_ynjw9ge", 
+        "service_tbpzjbh",
+        "template_ynjw9ge",
         {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
           course: formData.course,
         },
-        "PkTRIyzo8Hi5LniUC" 
+        "PkTRIyzo8Hi5LniUC"
       )
       .then(
         (result) => {
           console.log("Admin email sent successfully:", result);
-  
+
           // Send a thank-you email to the user
           emailjs
             .send(
-              "service_tbpzjbh", 
-              "template_ltgcypk", 
+              "service_tbpzjbh",
+              "template_ltgcypk",
               {
                 to_name: formData.name,
                 user_email: formData.email,
               },
-              "PkTRIyzo8Hi5LniUC" 
+              "PkTRIyzo8Hi5LniUC"
             )
             .then(
               (result) => {
                 console.log("Thank-you email sent successfully:", result);
-                alert("Application submitted successfully! Check your email for confirmation.");
-                handleCloseModal();
+
+                // Show success notification
+                toast.success("Application submitted successfully! Proceeding to payment...");
+
+                // Close the application modal and open the payment modal
+                setIsModalOpen(false);
+                setIsPaymentModalOpen(true);
               },
               (error) => {
                 console.error("Error sending thank-you email:", error);
-                alert("Application submitted, but there was an issue sending the confirmation email.");
+                toast.error("Application submitted, but there was an issue sending the confirmation email.");
               }
             );
         },
         (error) => {
           console.error("Error sending admin email:", error);
-          alert("There was an error. Please try again.");
+          toast.error("There was an error. Please try again.");
         }
       );
   };
-  
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     emailjs
-//       .send(
-//         "service_tbpzjbh", // Replace with your Email.js service ID
-//         "template_ltgcypk", // Replace with your Email.js template ID
-//         {
-//             name: formData.name, // User's name to personalize the email
-//             email: formData.email, // User's email
-//           },
-//         "PkTRIyzo8Hi5LniUC" // Replace with your Email.js public key
-//       )
-//       .then(
-//         (result) => {
-//             console.log("EmailJS response:", result);
-//           alert("Application submitted successfully!");
-//           handleCloseModal();
-//         },
-//         (error) => {
-//           alert("There was an error. Please try again.");
-//           console.error(error);
-//         }
-//       );
-//   };
 
   const courses = [
     {
       title: "Frontend Development",
       tools: ["HTML", "CSS", "JavaScript", "React"],
-      price: "$300",
+      price: "#250,000",
+      image: frontend,
+      startDate: "January 15, 2024",
     },
     {
       title: "UI/UX Design",
       tools: ["Figma", "Adobe XD", "Sketch"],
-      price: "$250",
+      price: "#150,000",
+      image: uiux,
+      startDate: "February 10, 2024",
     },
     {
       title: "Backend Development",
       tools: ["Node.js", "Express", "MongoDB"],
-      price: "$350",
+      price: "#300,000",
+      image: backend,
+      startDate: "March 5, 2024",
     },
     {
       title: "Data Analysis",
       tools: ["Python", "Pandas", "NumPy", "Tableau"],
-      price: "$400",
+      price: "#200,000",
+      image: data,
+      startDate: "April 20, 2024",
     },
   ];
 
@@ -130,20 +127,28 @@ export default function Courses() {
         {courses.map((course, index) => (
           <div
             key={index}
-            className="p-4 border rounded-lg shadow-md hover:shadow-lg"
+            className="relative p-4 bg-white border rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out"
           >
+            <img
+              src={course.image}
+              alt={course.title}
+              className="w-full h-60 object-cover rounded-t-lg mb-4"
+            />
             <h2 className="text-xl font-bold mb-2">{course.title}</h2>
-            <ul className="mb-4">
+            <p className="text-sm text-gray-500 mb-2">
+              Start Date: <span className="font-semibold">{course.startDate}</span>
+            </p>
+            <ul className="mb-4 space-y-1">
               {course.tools.map((tool, i) => (
                 <li key={i} className="text-gray-600">
                   - {tool}
                 </li>
               ))}
             </ul>
-            <p className="text-lg font-bold mb-4">{course.price}</p>
+            <p className="text-lg font-bold text-gray-800 mb-4">{course.price}</p>
             <button
               onClick={() => handleOpenModal(course.title)}
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              className="px-4 py-2 bg-[#8909AF] text-white rounded hover:bg-blue-600 transition duration-300"
             >
               Apply Now
             </button>
@@ -151,7 +156,10 @@ export default function Courses() {
         ))}
       </div>
 
-      {/* Modal */}
+      {/* Toastify Container */}
+      <ToastContainer position="top-right" autoClose={3000} />
+
+      {/* Application Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg shadow-lg w-80">
@@ -197,6 +205,15 @@ export default function Courses() {
             >
               &times;
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Payment Modal */}
+      {isPaymentModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-80">
+            <MakePayment {...formData} onClose={handlePaymentModalClose} />
           </div>
         </div>
       )}

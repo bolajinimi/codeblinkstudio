@@ -9,13 +9,15 @@ export default function Navbar() {
     <nav className="bg-white shadow-md">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
-        <a href="#" className="flex items-center text-gray-800">
+        <a href="#" className="flex items-center">
           {/* <img
             src={Blinks}
             alt="Blinks"
             className="w-30 h-auto mr-2"
           /> */}
-            <span className="font-md text-xl text-white bg-[#8909AF] ">Blinks</span>
+          <span className="text-3xl font-bold text-white bg-[#8909AF] px-3 py-1 rounded-lg shadow-md">
+            CodeBlinks
+          </span>
         </a>
 
         {/* Mobile Menu Button */}
@@ -49,7 +51,7 @@ export default function Navbar() {
             {/* Enroll Now Button */}
             <a
               href="#"
-              className="px-4 py-2 text-white bg-[#8909AF] rounded-lg shadow hover:bg-blue-700 transition"
+              className="font-bold px-4 py-2 text-white bg-[#8909AF] rounded-lg shadow hover:bg-[#7909AF]transition"
             >
               Enroll Now
             </a>
