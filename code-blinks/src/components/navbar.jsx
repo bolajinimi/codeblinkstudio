@@ -15,8 +15,11 @@ export default function Navbar() {
             alt="Blinks"
             className="w-30 h-auto mr-2"
           /> */}
-          <span className="text-3xl font-bold text-white bg-[#8909AF] px-3 py-1 rounded-lg shadow-md">
-            CodeBlinks
+          <span className="text-3xl font-bold text-[#8909AF] bg-[#8909AF  rounded-lg ">
+            Code
+          </span>
+          <span className="text-3xl font-bold  bg-[#8909AF rounded-lg ">
+            Blinks
           </span>
         </a>
 
@@ -41,14 +44,14 @@ export default function Navbar() {
           </svg>
         </button>
 
-        {/* Links and Button */}
-        <div
+    
+        {/* <div
           className={`lg:flex items-center ${
             isOpen ? "block" : "hidden"
           } w-full lg:w-auto`}
         >
           <div className="flex flex-col lg:flex-row lg:items-center gap-4">
-            {/* Enroll Now Button */}
+        
             <a
                href="/courses"
               className="font-bold px-4 py-2 text-white bg-[#8909AF] rounded-lg shadow hover:bg-[#7909AF]transition"
@@ -56,7 +59,7 @@ export default function Navbar() {
               Enroll Now
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </nav>
   );

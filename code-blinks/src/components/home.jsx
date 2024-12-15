@@ -1,32 +1,23 @@
-// import React from "react";
+
 
 export default function HomePage() {
   return (
     <div className="relative h-[80vh]">
+   
+      <div className="absolute inset-0 bg-[#8909AF] opacity-90"></div>
 
-        {/* Background color overlay */}
-     <div className="absolute inset-0 bg-[#8909AF] opacity-90"></div>
-
-      {/* Background Image */}
       <div className="absolute inset-0 bg-cover bg-center opacity-90 bg-[url('/home02.jpg')]"></div>
-      {/* Content */}
-        <div className="relative flex flex-col items-center justify-center h-full text-center">
-          <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
-            Welcome to Africa&apos;s #1 Training Institute
-          </h1>
-          <p className="text-lg lg:text-2xl text-white mb-4">
-            Transforming passionate individuals into world-class developers.
-          </p>
-          <a
-            href="/courses"
-            className="px-6 py-3 text-white bg-[#8909AF] hover:bg-purple-400 rounded-lg shadow-lg text-lg font-semibold"
-          >
-            Register Now
-          </a>
-        </div>
 
-
-      {/* WhatsApp Floating Button */}
+      <div className="relative flex flex-col items-center justify-center h-full text-center">
+        <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+          Welcome to Africa&apos;s #1 Training Institute
+        </h1>
+        <p className="text-lg lg:text-2xl text-white mb-4">
+          Transforming passionate individuals into world-class developers.
+        </p>
+      
+     
+      </div>
       <a
         href="https://wa.me/2348165987765"
         target="_blank"

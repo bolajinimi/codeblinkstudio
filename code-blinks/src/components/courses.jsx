@@ -162,7 +162,7 @@ export default function Courses() {
       <ToastContainer position="top-right" autoClose={3000} />
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-80">
             <h2 className="text-2xl font-bold mb-4">Apply for {formData.course}</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -202,7 +202,7 @@ export default function Courses() {
             </form>
             <button
               onClick={handleCloseModal}
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
+              className="absolute top-2 right-2 text-white text-4xl hover:text-gray-800"
             >
               &times;
             </button>
